@@ -1,6 +1,8 @@
 package com.github.geowarin.junit;
 
 import com.spotify.docker.client.*;
+import com.spotify.docker.client.exceptions.DockerCertificateException;
+import com.spotify.docker.client.exceptions.DockerException;
 import com.spotify.docker.client.messages.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -54,7 +56,7 @@ public class DockerRule extends ExternalResource {
       dockerClient.pull(params.imageName);
       container = dockerClient.createContainer(containerConfig);
     } catch (DockerException | InterruptedException e) {
-      throw new IllegalStateException(e);
+      throw new IllegalStateException();
     }
   }
 
